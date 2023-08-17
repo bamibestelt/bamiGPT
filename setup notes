@@ -1,0 +1,14 @@
+Start PrivateGPT (if there are problems):
+1. make sure python -m venv .venv
+
+
+2. make sure install:
+sentence_transformers
+pip install sentence_transformers
+
+pandoc
+from pypandoc.pandoc_download import download_pandoc
+# see the documentation how to customize the installation path
+# but be aware that you then need to include it in the `PATH`
+download_pandoc()
+add pandoc to path: export PATH=$PATH:./usr/local/bin/pandoc

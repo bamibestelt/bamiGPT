@@ -1,6 +1,7 @@
 Start PrivateGPT (if there are problems):
-1. make sure python -m venv .venv
+use example.env and change the LLM model path in .env
 
+1. make sure python -m venv .venv
 
 2. make sure install:
 sentence_transformers

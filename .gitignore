@@ -162,8 +162,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# learning materials
+# local setup stuff
 source_documents/
+*.pkg
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

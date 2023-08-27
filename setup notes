@@ -13,3 +13,6 @@ from pypandoc.pandoc_download import download_pandoc
 # but be aware that you then need to include it in the `PATH`
 download_pandoc()
 add pandoc to path: export PATH=$PATH:./usr/local/bin/pandoc
+
+build dockerfile and showing progress.
+docker build --progress=plain --no-cache -t test-private-gpt . 

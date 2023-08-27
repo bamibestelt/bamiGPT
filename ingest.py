@@ -32,6 +32,7 @@ load_dotenv()
 
 # Load environment variables
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
+android_sample_directory = os.environ.get('ANDROID_SAMPLE_PATH')
 source_directory = os.environ.get('SOURCE_DIRECTORY', 'source_documents')
 embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME')
 chunk_size = 500
@@ -112,18 +113,39 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
 
 def process_documents(ignored_files: List[str] = []) -> List[Document]:
     """
-    Load documents and split in chunks
+    Load documents
     """
     print(f"Loading documents from {source_directory}")
     documents = load_documents(source_directory, ignored_files)
     if not documents:
         print("No new documents to load")
-        exit(0)
     print(f"Loaded {len(documents)} new documents from {source_directory}")
+
+    documents += process_android_code_sample(ignored_files)
+    if not documents or len(documents)==0:
+        print("No new documents to load")
+        exit(0)
+    print(f"Loaded {len(documents)} new documents from {android_sample_directory}")
+    
+    """
+    split in chunks
+    """
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     texts = text_splitter.split_documents(documents)
     print(f"Split into {len(texts)} chunks of text (max. {chunk_size} tokens each)")
+
     return texts
+
+def process_android_code_sample(ignored_files: List[str] = []) -> List[Document]:
+    """
+    Load android code sample
+    """
+    print(f"Loading android samples from {android_sample_directory}")
+    documents = load_documents(android_sample_directory, ignored_files)
+    if not documents:
+        print("No new documents to load")
+        return list()
+    return documents
 
 def does_vectorstore_exist(persist_directory: str) -> bool:
     """

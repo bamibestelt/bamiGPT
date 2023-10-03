@@ -175,3 +175,5 @@ source_documents/
 
 .vscode/launch.json
 persist_directory/chroma.sqlite3
+
+/models/*

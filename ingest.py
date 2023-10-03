@@ -35,7 +35,7 @@ import chromadb
 # Load environment variables
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
 android_sample_directory = os.environ.get('ANDROID_SAMPLE_PATH')
-source_directory = os.environ.get('SOURCE_DIRECTORY', 'source_documents')
+source_directory = os.environ.get('DOCUMENTS_PATH')
 embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME')
 chunk_size = 500
 chunk_overlap = 50
